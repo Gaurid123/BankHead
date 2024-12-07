@@ -29,7 +29,7 @@ public class EmployeeController
 	{
 		Iterable<Employee> getemployee=esi.getAllEmployeeData();
 		return new ResponseEntity<Iterable<Employee>>(getemployee,HttpStatus.OK);
-
+	}
 	@PostMapping("/add-employee") 
 	public ResponseEntity<Employee> onsave(@RequestPart("data")String employee,@RequestPart("eImage")MultipartFile employeeImage,@RequestPart("eAadhar")MultipartFile employeeAadhar,@RequestPart("epancard")MultipartFile employeePancard)
 	{

@@ -3,9 +3,14 @@ package com.ebs.bankhead.main.model;
 import java.util.Date;
 
 import org.hibernate.annotations.Columns;
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.ebs.bankhead.main.enumm.EmployeeEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,7 +37,9 @@ public class Employee
 	private String employeeEmail;
 	private String employeeUsername;
 	private String employeePassword;
-	private boolean isActive;
+	@Enumerated(EnumType.STRING)
+	private EmployeeEnum isActive;
+	@CreationTimestamp
 	private Date employeeRegisteredon;
 	@Lob
 	@Column(length=999999999)

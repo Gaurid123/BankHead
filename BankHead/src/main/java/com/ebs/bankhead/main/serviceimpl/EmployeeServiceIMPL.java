@@ -66,12 +66,8 @@ public Employee onSaveEmployeeData(String employee, MultipartFile employeeImage,
 @Override
 public Employee getSingleData(int employeeId) {
 
-	if(er.findById(employeeId).isEmpty())
-	{
-		throw new EmployeeNotFoundException("Data is not Found");
-	}
-	else {
+	
 		return er.findById(employeeId).get();
-	}
+
 }
 }

@@ -13,5 +13,7 @@ public interface EmployeeServiceI {
 	public Employee onSaveEmployeeData(String employee, MultipartFile employeeImage, MultipartFile employeeAadhar,
 			MultipartFile employeePancard);
 
+	public Employee getSingleData(int employeeId);
+
 
 }

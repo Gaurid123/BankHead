@@ -21,6 +21,8 @@ public class EmployeeServiceIMPL implements EmployeeServiceI
 @Autowired
 EmployeeRepository er;
 
+@Autowired
+ObjectMapper objmapper;
 @Override
 public Iterable<Employee> getAllEmployeeData() {
 	// TODO Auto-generated method stub
@@ -33,9 +35,8 @@ public Iterable<Employee> getAllEmployeeData() {
 	else {
 		return er.findAll();
 	}
+}
 
-@Autowired
-ObjectMapper objmapper;
 
 @Override
 public Employee onSaveEmployeeData(String employee, MultipartFile employeeImage, MultipartFile employeeAadhar,
@@ -60,5 +61,16 @@ public Employee onSaveEmployeeData(String employee, MultipartFile employeeImage,
 	return emp;
 	
 
+}
+@Override
+public Employee getSingleData(int employeeId) {
+
+	if(er.findById(employeeId).isEmpty())
+	{
+		throw new EmployeeNotFoundException("Data is not Found");
+	}
+	else {
+		return er.findById(employeeId).get();
+	}
 }
 }

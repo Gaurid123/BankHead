@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,12 +30,19 @@ public class EmployeeController
 	{
 		Iterable<Employee> getemployee=esi.getAllEmployeeData();
 		return new ResponseEntity<Iterable<Employee>>(getemployee,HttpStatus.OK);
-
+	}
 	@PostMapping("/add-employee") 
 	public ResponseEntity<Employee> onsave(@RequestPart("data")String employee,@RequestPart("eImage")MultipartFile employeeImage,@RequestPart("eAadhar")MultipartFile employeeAadhar,@RequestPart("epancard")MultipartFile employeePancard)
 	{
 		Employee empdata=esi.onSaveEmployeeData(employee,employeeImage,employeeAadhar,employeePancard);
 		return new ResponseEntity<Employee>(empdata,HttpStatus.CREATED);
 
+	}
+	
+	@GetMapping("/get-singleemployee/{employeeId}")
+	public ResponseEntity<Employee> getSingleEmployee(@PathVariable int employeeId)
+	{
+		Employee empdata=esi.getSingleData(employeeId);
+		return new ResponseEntity<Employee>(empdata,HttpStatus.OK);
 	}
 }

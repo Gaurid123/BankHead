@@ -40,10 +40,10 @@ public class EmployeeController
 	}
 	
 
-	@GetMapping("/get-singleemployee/{employeeId}")
-	public ResponseEntity<Employee> getSingleEmployee(@PathVariable int employeeId)
+	@GetMapping("/get-singleemployee/{eId}")
+	public ResponseEntity<Employee> getSingleEmployee(@PathVariable("eId") int eId)
 	{
-		Employee empdata=esi.getSingleData(employeeId);
+		Employee empdata=esi.getSingleData(eId);
 		return new ResponseEntity<Employee>(empdata,HttpStatus.OK);
 	}
 

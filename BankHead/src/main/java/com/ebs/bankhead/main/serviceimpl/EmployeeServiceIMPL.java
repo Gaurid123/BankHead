@@ -63,10 +63,10 @@ public Employee onSaveEmployeeData(String employee, MultipartFile employeeImage,
 
 }
 @Override
-public Employee getSingleData(int employeeId) {
+public Employee getSingleData(int eId) {
 
 	
-		return er.findById(employeeId).get();
+		return er.findById(eId).get();
 	
 }
 }

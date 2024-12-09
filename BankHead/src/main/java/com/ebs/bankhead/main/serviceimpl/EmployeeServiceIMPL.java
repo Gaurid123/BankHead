@@ -20,6 +20,9 @@ public class EmployeeServiceIMPL implements EmployeeServiceI
 {
 @Autowired
 EmployeeRepository er;
+@Autowired
+ObjectMapper objmapper;
+
 
 @Autowired
 ObjectMapper objmapper;
@@ -36,7 +39,6 @@ public Iterable<Employee> getAllEmployeeData() {
 		return er.findAll();
 	}
 }
-
 
 @Override
 public Employee onSaveEmployeeData(String employee, MultipartFile employeeImage, MultipartFile employeeAadhar,

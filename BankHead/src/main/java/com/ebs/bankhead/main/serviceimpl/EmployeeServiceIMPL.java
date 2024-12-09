@@ -66,6 +66,7 @@ public Employee onSaveEmployeeData(String employee, MultipartFile employeeImage,
 public Employee getSingleData(int employeeId) 
 {
 	
+	
 	return er.findById(employeeId).get();
 	
 }

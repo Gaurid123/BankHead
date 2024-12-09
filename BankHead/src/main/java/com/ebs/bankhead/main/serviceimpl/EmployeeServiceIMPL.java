@@ -24,6 +24,8 @@ EmployeeRepository er;
 ObjectMapper objmapper;
 
 
+@Autowired
+ObjectMapper objmapper;
 @Override
 public Iterable<Employee> getAllEmployeeData() {
 	// TODO Auto-generated method stub
@@ -61,5 +63,16 @@ public Employee onSaveEmployeeData(String employee, MultipartFile employeeImage,
 	return emp;
 	
 
+}
+@Override
+public Employee getSingleData(int employeeId) {
+
+	if(er.findById(employeeId).isEmpty())
+	{
+		throw new EmployeeNotFoundException("Data is not Found");
+	}
+	else {
+		return er.findById(employeeId).get();
+	}
 }
 }

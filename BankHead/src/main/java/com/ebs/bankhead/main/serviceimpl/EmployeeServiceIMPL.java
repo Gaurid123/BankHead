@@ -24,8 +24,6 @@ EmployeeRepository er;
 ObjectMapper objmapper;
 
 
-@Autowired
-ObjectMapper objmapper;
 @Override
 public Iterable<Employee> getAllEmployeeData() {
 	// TODO Auto-generated method stub

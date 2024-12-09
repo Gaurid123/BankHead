@@ -20,9 +20,10 @@ public class EmployeeServiceIMPL implements EmployeeServiceI
 {
 @Autowired
 EmployeeRepository er;
-
 @Autowired
 ObjectMapper objmapper;
+
+
 @Override
 public Iterable<Employee> getAllEmployeeData() {
 	// TODO Auto-generated method stub
@@ -37,7 +38,6 @@ public Iterable<Employee> getAllEmployeeData() {
 		
 	}
 }
-
 
 @Override
 public Employee onSaveEmployeeData(String employee, MultipartFile employeeImage, MultipartFile employeeAadhar,
@@ -69,5 +69,6 @@ public Employee getSingleData(int employeeId) {
 	
 		return er.findById(employeeId).get();
 
+	
 }
 }

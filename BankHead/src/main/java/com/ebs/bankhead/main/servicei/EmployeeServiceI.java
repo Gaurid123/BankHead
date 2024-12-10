@@ -15,5 +15,9 @@ public interface EmployeeServiceI {
 
 	public Employee getSingleData(int eId);
 
+	public Employee onUpdateEmployeeData(int eId, String employee, MultipartFile employeeImage,
+			MultipartFile employeeAadhar,
+			MultipartFile employeePancard);
+
 
 }

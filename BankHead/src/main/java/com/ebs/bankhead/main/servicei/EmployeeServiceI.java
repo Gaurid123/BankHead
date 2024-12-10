@@ -19,5 +19,7 @@ public interface EmployeeServiceI {
 			MultipartFile employeeAadhar,
 			MultipartFile employeePancard);
 
+	public void deletedata(int eId);
+
 
 }

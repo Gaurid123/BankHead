@@ -100,5 +100,18 @@ public Employee onUpdateEmployeeData(int eId, String employee, MultipartFile emp
 	return emp;
 }
 
+@Override
+public void deletedata(int eId) 
+{
+	Optional<Employee> id = er.findById(eId);
+	
+	if(id.isPresent())
+	{
+		er.deleteById(eId);
+	}
+	
+	
+}
+
 
 }

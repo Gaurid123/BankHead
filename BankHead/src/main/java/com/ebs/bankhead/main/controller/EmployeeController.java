@@ -3,6 +3,7 @@ package com.ebs.bankhead.main.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,6 +58,11 @@ public class EmployeeController
 		return new ResponseEntity<Employee>(empdata,HttpStatus.OK);
 
 	}
-	
+	@DeleteMapping("/delete-employee/{eId}")
+	public ResponseEntity<String> deleteData(@PathVariable("eId") int eId)
+	{
+		esi.deletedata(eId);
+		return new ResponseEntity<String>("data deleted succesfully",HttpStatus.OK);
+	}
 
 }

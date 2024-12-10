@@ -1,7 +1,7 @@
 package com.ebs.bankhead.main.serviceimpl;
 
 import java.io.IOException;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,12 +62,43 @@ public Employee onSaveEmployeeData(String employee, MultipartFile employeeImage,
 	
 
 }
-@Override
-public Employee getSingleData(int employeeId) 
-{
+
+public Employee getSingleData(int eId) {
+
 	
-	
-	return er.findById(employeeId).get();
+		return er.findById(eId).get();
 	
 }
+
+@Override
+public Employee onUpdateEmployeeData(int eId, String employee, MultipartFile employeeImage,
+		MultipartFile employeeAadhar, MultipartFile employeePancard) {
+	// TODO Auto-generated method stub
+	
+	Optional<Employee> id = er.findById(eId);
+	Employee emp=null;
+	if(id.isPresent())
+	{
+		
+		try {
+			 emp = objmapper.readValue(employee, Employee.class);
+			if(!employeeImage.isEmpty())emp.setEmployeeImage(employeeImage.getBytes());
+			if(!employeeAadhar.isEmpty())emp.setEmployeeAadhar(employeeAadhar.getBytes());
+			if(!employeePancard.isEmpty())emp.setEmployeePancard(employeePancard.getBytes());
+	     
+			er.save(emp);
+			
+		} catch (JsonProcessingException e) {
+			
+			e.printStackTrace();
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
+		
+	}
+	return emp;
+}
+
+
 }

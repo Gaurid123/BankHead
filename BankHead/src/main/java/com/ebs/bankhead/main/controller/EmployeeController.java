@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 
@@ -39,12 +40,23 @@ public class EmployeeController
 
 	}
 	
-	@GetMapping("/get-singleemployee/{employeeId}")
-	public ResponseEntity<Employee> getSingleEmployee(@PathVariable int employeeId)
-	{
 
-		
-		Employee empdata=esi.getSingleData(employeeId);
+	@GetMapping("/get-singleemployee/{eId}")
+	public ResponseEntity<Employee> getSingleEmployee(@PathVariable("eId") int eId)
+	{
+		Employee empdata=esi.getSingleData(eId);
 		return new ResponseEntity<Employee>(empdata,HttpStatus.OK);
 	}
+	
+	@PutMapping("/employee-editemployee/{eId}")
+	public ResponseEntity<Employee> updateData(@PathVariable("eId") int eId, @RequestPart("data")String employee,
+			@RequestPart("eImage")MultipartFile employeeImage,@RequestPart("eAadhar")MultipartFile employeeAadhar,
+			@RequestPart("epancard")MultipartFile employeePancard)
+	{
+		Employee empdata=esi.onUpdateEmployeeData(eId,employee,employeeImage,employeeAadhar,employeePancard);
+		return new ResponseEntity<Employee>(empdata,HttpStatus.OK);
+
+	}
+	
+
 }

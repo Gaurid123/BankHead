@@ -22,5 +22,7 @@ public interface EmployeeServiceI {
 	public Employee statusDataUpdate(int eId, String employee, MultipartFile employeeImage,
 			MultipartFile employeeAadhar);
 
+	public Employee findByNameEmployee(String sname);
+
 
 }

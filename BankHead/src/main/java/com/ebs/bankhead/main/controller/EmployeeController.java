@@ -65,4 +65,11 @@ public class EmployeeController
 		return new ResponseEntity<Employee>(empdata,HttpStatus.OK);
 	}
 	
+	@GetMapping("/employeesearch/{employeeName}")
+	public ResponseEntity<Employee> findByName(@PathVariable ("employeeName") String sname)
+	{
+			Employee	ref	=	esi.findByNameEmployee(sname);
+			return new ResponseEntity<Employee>(ref,HttpStatus.OK);
+	}
+	
 }

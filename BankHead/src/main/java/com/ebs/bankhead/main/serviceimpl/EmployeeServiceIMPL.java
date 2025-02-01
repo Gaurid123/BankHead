@@ -48,6 +48,10 @@ public Employee onSaveEmployeeData(String employee, MultipartFile employeeImage,
 		if(!employeeImage.isEmpty())emp.setEmployeeImage(employeeImage.getBytes());
 		if(!employeeAadhar.isEmpty())emp.setEmployeeAadhar(employeeAadhar.getBytes());
 		if(!employeePancard.isEmpty())emp.setEmployeePancard(employeePancard.getBytes());
+		emp.setEmployeeUsername("EasyBank"+123);
+		emp.setEmployeePassword("EasyBank@"+123);
+		
+		
      
 		er.save(emp);
 		
@@ -125,6 +129,12 @@ public Employee statusDataUpdate(int eId, String employee, MultipartFile employe
 		
 	}
 	return emp;
+}
+
+@Override
+public Employee employeelogi(String username, String password) {
+	// TODO Auto-generated method stub
+	return er.findByEmployeeUsernameAndEmployeePassword(username, password).get();
 }
 
 

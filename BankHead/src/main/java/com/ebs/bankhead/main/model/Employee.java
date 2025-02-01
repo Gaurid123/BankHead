@@ -2,10 +2,11 @@ package com.ebs.bankhead.main.model;
 
 import java.util.Date;
 
-import org.hibernate.annotations.Columns;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.ebs.bankhead.main.enumm.EmployeeEnum;
+import com.ebs.bankhead.main.enumm.EmployeeType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,6 +40,9 @@ public class Employee
 	private String employeePassword;
 	@Enumerated(EnumType.STRING)
 	private EmployeeEnum isActive;
+	@Enumerated(EnumType.STRING)
+	private EmployeeType employeeType;
+	
 	@CreationTimestamp
 	private Date employeeRegisteredon;
 	@Lob
@@ -50,4 +54,7 @@ public class Employee
 	@Lob
 	@Column(length=999999999)
 	private byte[] employeePancard;
+	
+	
+	
 }

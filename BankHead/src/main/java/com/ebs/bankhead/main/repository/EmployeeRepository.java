@@ -8,8 +8,13 @@ import org.springframework.stereotype.Repository;
 import com.ebs.bankhead.main.model.Employee;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+public interface EmployeeRepository extends JpaRepository<Employee, Integer> 
+{
+
 
 	public Optional<Employee> findByEmployeeName(String sname);
+
+
+	public Optional<Employee> findByEmployeeUsernameAndEmployeePassword(String username,String password);
 
 }

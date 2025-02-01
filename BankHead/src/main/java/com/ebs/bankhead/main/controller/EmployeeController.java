@@ -3,6 +3,7 @@ package com.ebs.bankhead.main.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ebs.bankhead.main.model.Employee;
 import com.ebs.bankhead.main.servicei.EmployeeServiceI;
 
+@CrossOrigin("http://localhost:5173/")
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController
@@ -65,11 +67,22 @@ public class EmployeeController
 		return new ResponseEntity<Employee>(empdata,HttpStatus.OK);
 	}
 	
+
 	@GetMapping("/employeesearch/{employeeName}")
 	public ResponseEntity<Employee> findByName(@PathVariable ("employeeName") String sname)
 	{
 			Employee	ref	=	esi.findByNameEmployee(sname);
 			return new ResponseEntity<Employee>(ref,HttpStatus.OK);
 	}
+
+	@GetMapping("/employee-login/{username}/{password}")
+	public ResponseEntity<Employee> employeeLogin(@PathVariable("username") String username,
+			                                      @PathVariable("password") String password)
+	{
+		Employee dataref= esi.employeelogi(username,password);
+		return new ResponseEntity<Employee>(dataref,HttpStatus.OK);
+	}
+	
+
 	
 }

@@ -24,5 +24,7 @@ public interface EmployeeServiceI {
 
 	public Employee employeelogi(String username, String password);
 
+	public Employee deleteEmployeeById(int eId);
+
 
 }

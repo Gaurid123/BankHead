@@ -19,6 +19,7 @@ public class EmployeeUtility
 	{
 		
 		return FirstName +'@'+PASSWORD_RANDOM.nextInt(9999);
+		
 	}
 
 }

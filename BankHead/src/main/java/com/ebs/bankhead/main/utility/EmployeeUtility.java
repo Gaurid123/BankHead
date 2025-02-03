@@ -12,6 +12,7 @@ public class EmployeeUtility
 	public static String getUsername(String FirstName)
 	{
 		return FirstName+USERNAME_RANDOM.nextInt(9999);
+		
 	}
 	
 	public static String getPassword(String FirstName)

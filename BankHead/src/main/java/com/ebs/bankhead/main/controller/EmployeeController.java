@@ -67,6 +67,14 @@ public class EmployeeController
 		return new ResponseEntity<Employee>(empdata,HttpStatus.OK);
 	}
 	
+
+	@GetMapping("/employeesearch/{employeeName}")
+	public ResponseEntity<Employee> findByName(@PathVariable ("employeeName") String sname)
+	{
+			Employee	ref	=	esi.findByNameEmployee(sname);
+			return new ResponseEntity<Employee>(ref,HttpStatus.OK);
+	}
+
 	@GetMapping("/employee-login/{username}/{password}")
 	public ResponseEntity<Employee> employeeLogin(@PathVariable("username") String username,
 			                                      @PathVariable("password") String password)
@@ -75,5 +83,6 @@ public class EmployeeController
 		return new ResponseEntity<Employee>(dataref,HttpStatus.OK);
 	}
 	
+
 	
 }

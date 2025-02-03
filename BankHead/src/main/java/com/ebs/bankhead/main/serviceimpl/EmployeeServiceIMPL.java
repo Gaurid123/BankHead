@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ebs.bankhead.main.exception.EmployeeNotFoundException;
-
+import com.ebs.bankhead.main.exception.InvalidUserDetailsException;
 import com.ebs.bankhead.main.model.Employee;
 import com.ebs.bankhead.main.repository.EmployeeRepository;
 import com.ebs.bankhead.main.servicei.EmployeeServiceI;
@@ -132,10 +132,25 @@ public Employee statusDataUpdate(int eId, String employee, MultipartFile employe
 }
 
 @Override
+
+public Employee findByNameEmployee(String sname) {
+	
+Optional<Employee> ref	=er.findByEmployeeName(sname);
+
+if(ref.isPresent())
+{
+	return ref.get();
+}
+else {
+	throw new InvalidUserDetailsException("invaild"+sname);
+
+}
+
+}
+
+@Override
 public Employee employeelogi(String username, String password) {
 	// TODO Auto-generated method stub
 	return er.findByEmployeeUsernameAndEmployeePassword(username, password).get();
 }
-
-
 }

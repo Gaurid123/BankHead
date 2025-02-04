@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.ebs.bankhead.main.model.Employee;
 import com.ebs.bankhead.main.servicei.EmployeeServiceI;
 
-@CrossOrigin("http://localhost:5173/")
+@CrossOrigin("http://localhost:5174/")
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController

@@ -101,6 +101,7 @@ public Employee onUpdateEmployeeData(int eId, String employee, MultipartFile emp
 }
 
 @Override
+
 public void deletedata(int eId) 
 {
 	Optional<Employee> id = er.findById(eId);
@@ -110,7 +111,34 @@ public void deletedata(int eId)
 		er.deleteById(eId);
 	}
 	
+}
 	
+
+public Employee statusDataUpdate(int eId, String employee, MultipartFile employeeImage, MultipartFile employeeAadhar) {
+	
+	Optional<Employee> id = er.findById(eId);
+	Employee emp=null;
+	if(id.isPresent())
+	{
+		
+		try {
+			 emp = objmapper.readValue(employee, Employee.class);
+			if(!employeeImage.isEmpty())emp.setEmployeeImage(employeeImage.getBytes());
+			if(!employeeAadhar.isEmpty())emp.setEmployeeAadhar(employeeAadhar.getBytes());
+			
+			er.save(emp);
+			
+		} catch (JsonProcessingException e) {
+			
+			e.printStackTrace();
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
+		
+	}
+	return emp;
+
 }
 
 

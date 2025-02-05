@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -56,13 +57,22 @@ public class EmployeeController
 	{
 		Employee empdata=esi.onUpdateEmployeeData(eId,employee,employeeImage,employeeAadhar,employeePancard);
 		return new ResponseEntity<Employee>(empdata,HttpStatus.OK);
-
 	}
+	@PatchMapping("/employee-editemployee/{eId}")
+	public ResponseEntity<Employee> statusDataUpdate(@PathVariable("eId") int eId, @RequestPart("data")String employee,
+			@RequestPart("eImage")MultipartFile employeeImage,@RequestPart("eAadhar")MultipartFile employeeAadhar)
+	{
+		Employee empdata=esi.statusDataUpdate(eId,employee,employeeImage,employeeAadhar);
+		return new ResponseEntity<Employee>(empdata,HttpStatus.OK);
+	}
+
 	@DeleteMapping("/delete-employee/{eId}")
 	public ResponseEntity<String> deleteData(@PathVariable("eId") int eId)
 	{
 		esi.deletedata(eId);
 		return new ResponseEntity<String>("data deleted succesfully",HttpStatus.OK);
 	}
+
+	
 
 }

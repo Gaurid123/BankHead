@@ -11,5 +11,10 @@ import com.ebs.bankhead.main.model.Employee;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> 
 {
 
+
+	public Optional<Employee> findByEmployeeName(String sname);
+
+
 	public Optional<Employee> findByEmployeeUsernameAndEmployeePassword(String username,String password);
+
 }

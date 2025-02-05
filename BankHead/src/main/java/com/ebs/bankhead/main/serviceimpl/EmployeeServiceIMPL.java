@@ -12,6 +12,7 @@ import com.ebs.bankhead.main.exception.InvalidUserDetailsException;
 import com.ebs.bankhead.main.model.Employee;
 import com.ebs.bankhead.main.repository.EmployeeRepository;
 import com.ebs.bankhead.main.servicei.EmployeeServiceI;
+import com.ebs.bankhead.main.utility.EmployeeUtility;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -19,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class EmployeeServiceIMPL implements EmployeeServiceI
 {
 @Autowired
+
 EmployeeRepository er;
 @Autowired
 ObjectMapper objmapper;
@@ -48,10 +50,11 @@ public Employee onSaveEmployeeData(String employee, MultipartFile employeeImage,
 		if(!employeeImage.isEmpty())emp.setEmployeeImage(employeeImage.getBytes());
 		if(!employeeAadhar.isEmpty())emp.setEmployeeAadhar(employeeAadhar.getBytes());
 		if(!employeePancard.isEmpty())emp.setEmployeePancard(employeePancard.getBytes());
-		emp.setEmployeeUsername("EasyBank"+123);
-		emp.setEmployeePassword("EasyBank@"+123);
-		
-		
+//		emp.setEmployeeUsername("Easybank"+1144);
+//		emp.setEmployeePassword("Easybank@"+2244);
+//		
+		emp.setEmployeeUsername(EmployeeUtility.getUsername(emp.getEmployeeName()));
+		emp.setEmployeePassword(EmployeeUtility.getPassword(emp.getEmployeeName()));
      
 		er.save(emp);
 		
@@ -167,4 +170,24 @@ public Employee employeelogi(String username, String password) {
 	// TODO Auto-generated method stub
 	return er.findByEmployeeUsernameAndEmployeePassword(username, password).get();
 }
+
+
+@Override
+public Employee deleteEmployeeById(int eId) 
+{ 
+ 
+	Optional<Employee> idRef = er.findById(eId);
+	Employee emp=null;
+	if(idRef.isPresent())
+	{
+		er.deleteById(eId);
+	}
+	else {
+		throw new EmployeeNotFoundException("Given Employee eId is not Present :"+eId);
+	}
+	return emp;
+	
+	
+}
+
 }

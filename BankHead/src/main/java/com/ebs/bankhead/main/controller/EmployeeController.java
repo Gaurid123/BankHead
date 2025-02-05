@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+
+
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +33,9 @@ import com.ebs.bankhead.main.servicei.EmployeeServiceI;
 @RequestMapping("/employee")
 public class EmployeeController
 {
+	
 	@Autowired
+	
 	EmployeeServiceI esi;
 
 	
@@ -40,7 +46,10 @@ public class EmployeeController
 		return new ResponseEntity<Iterable<Employee>>(getemployee,HttpStatus.OK);
 	}
 	@PostMapping("/add-employee") 
-	public ResponseEntity<Employee> onsave(@RequestPart("data")String employee,@RequestPart("eImage")MultipartFile employeeImage,@RequestPart("eAadhar")MultipartFile employeeAadhar,@RequestPart("epancard")MultipartFile employeePancard)
+	public ResponseEntity<Employee> onsave(@RequestPart("data")String employee,
+			@RequestPart("eImage")MultipartFile employeeImage,
+			@RequestPart("eAadhar")MultipartFile employeeAadhar,
+			@RequestPart("epancard")MultipartFile employeePancard)
 	{
 		Employee empdata=esi.onSaveEmployeeData(employee,employeeImage,employeeAadhar,employeePancard);
 		return new ResponseEntity<Employee>(empdata,HttpStatus.CREATED);
@@ -95,6 +104,12 @@ public class EmployeeController
 	{
 		Employee dataref= esi.employeelogi(username,password);
 		return new ResponseEntity<Employee>(dataref,HttpStatus.OK);
+	}
+	@DeleteMapping("/employee-delete/{eId}")
+	public ResponseEntity<Employee> deleteData(@PathVariable("eId") int eId)
+	{
+		Employee employeeRef=esi.deleteEmployeeById(eId);
+		return new ResponseEntity<Employee>(employeeRef,HttpStatus.OK);
 	}
 	
 

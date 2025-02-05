@@ -27,4 +27,12 @@ public interface EmployeeServiceI {
 
 
 
+
+	public Employee findByNameEmployee(String sname);
+
+	public Employee employeelogi(String username, String password);
+
+
+
+
 }

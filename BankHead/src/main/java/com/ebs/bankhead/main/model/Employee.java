@@ -30,7 +30,9 @@ public class Employee
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	private int employeeId;
+	
 	private String employeeName;
+	
 	private String employeeDesignation;
 	private String employeeAddress;
 	private long employeeMobileno;
@@ -38,8 +40,10 @@ public class Employee
 	private String employeeEmail;
 	private String employeeUsername;
 	private String employeePassword;
+	
 	@Enumerated(EnumType.STRING)
 	private EmployeeEnum isActive;
+	
 	@Enumerated(EnumType.STRING)
 	private EmployeeType employeeType;
 	
